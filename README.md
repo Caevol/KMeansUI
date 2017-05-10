@@ -9,3 +9,4 @@ This algorithm uses the iterative approach, which randomly generates a centroid 
 and moves the centroid to the center of the cluster repeatedly until the centroid does not move.<p>
 This is a relatively fast algorithm, that can safely cluster data as large as 100,000 in seconds (although at that point 
 it becomes a colorful blob rather than a collection of datapoints).<p>
+Each iteration of the algorithm runs at (#ofPoints * #ofClusters) speed. So as the number of points rises, for fast calculations, keep the number of clusters low.<p>
