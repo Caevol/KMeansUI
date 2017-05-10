@@ -5,6 +5,8 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import kmeans.Cluster;
 import kmeans.Point;
 
@@ -52,8 +54,27 @@ public class PointPane extends Pane {
             col = colorChooser(colorIter);
             for(Point p: s.getPoints()){
 
-                Circle c = new Circle((p.getX()*this.getWidth()), (p.getY()*this.getHeight()), 5, col);
+                Rectangle c = new Rectangle((p.getX()*this.getWidth()), (p.getY()*this.getHeight()), 5, 5);
+                c.setFill(col);
                 this.getChildren().add(c);
+            }
+            colorIter ++;
+            colorIter %= 6;
+        }
+    }
+
+    public void placeLines(){
+        int colorIter = 0;
+        Color col = new Color(0,0,0,0);
+        for(Cluster s: clusters){
+            col = colorChooser(colorIter);
+            col = new Color(col.getRed(), col.getGreen(), col.getBlue(), .5);
+            Point cent = s.getCentroid();
+            for(Point p: s.getPoints()){
+                Line l = new Line(p.getX() * getWidth(), p.getY() * getHeight(), cent.getX() * getWidth(), cent.getY() * getHeight());
+
+                l.setStroke(col);
+                getChildren().add(l);
             }
             colorIter ++;
             colorIter %= 6;

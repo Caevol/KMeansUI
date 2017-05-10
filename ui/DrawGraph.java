@@ -53,7 +53,7 @@ public class DrawGraph extends Application {
         mainPane = new BorderPane();
         graphPane = new PointPane(kmeans.getClusters());
         graphPane.placeCentroids(kmeans.getClusters());
-
+        graphPane.placeLines();
         mainPane.setCenter(graphPane);
         mainPane.setTop(topBar);
         Scene scene = new Scene(mainPane, 750, 750);
@@ -68,6 +68,7 @@ public class DrawGraph extends Application {
         kmeans.getNewClusters(points, clusters);
         graphPane.setPoints(kmeans.getClusters());
         graphPane.placeCentroids(kmeans.getClusters());
+        graphPane.placeLines();
     }
 
 

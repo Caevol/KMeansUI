@@ -63,11 +63,30 @@ public class KMeans{
         //plotClusters();
     }
 
+
+
     private void plotClusters() {
         for (int i = 0; i < NUM_CLUSTERS; i++) {
             Cluster c = (Cluster) clusters.get(i);
             c.plotCluster();
         }
+    }
+
+    private double getAccuracyScore(){
+        //return clusters.size()*clusters.size() +
+        //return sum of mean distances
+        double score = 0.0;
+        for(Cluster c: clusters){
+            double sum = 0.0;
+            for(Point p: c.getPoints()){
+                sum += Point.distance(p, c.getCentroid());
+            }
+            //System.out.println("Sum: " + (sum/c.getPoints().size()));
+            if(c.getPoints().size() != 0) {
+                score += sum / c.getPoints().size();
+            }
+        }
+        return score;
     }
 
     //The process to calculate the K Means, with iterating method.
@@ -109,7 +128,9 @@ public class KMeans{
                 finish = true;
             }
         }
-        System.out.println("Iteration: " + iteration);
+
+        //System.out.println(getAccuracyScore());
+        //System.out.println("Iteration: " + iteration);
     }
 
     public ArrayList<Cluster> getClusters(){
