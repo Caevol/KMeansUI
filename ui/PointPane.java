@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import kmeans.Cluster;
 import kmeans.Point;
 
@@ -75,7 +76,11 @@ public class PointPane extends Pane {
 
                 l.setStroke(col);
                 getChildren().add(l);
+
             }
+            Text t = new Text(cent.getX() * getWidth() - 7, cent.getY() * getHeight() + 5, Integer.toString(s.getPoints().size()));
+
+            getChildren().add(t);
             colorIter ++;
             colorIter %= 6;
         }
